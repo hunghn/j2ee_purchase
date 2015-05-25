@@ -59,6 +59,7 @@ public class HomeController {
 	public String index(Model model, HttpSession session) {
 		logger.info("Load Login.");
 		model.addAttribute("URL", "resources/");
+		model.addAttribute("BASE_URL", "./");
 		model.addAttribute("TITLE", "ERP Admin | Log in");
 		
 		return "login";
@@ -68,6 +69,7 @@ public class HomeController {
 	public String home(Model model, HttpSession session) {
 		logger.info("Load Home Page.");
 		model.addAttribute("URL", "resources/");
+		model.addAttribute("BASE_URL", "./");
 		model.addAttribute("TITLE", "ERP Admin | Dashboard");
 
 		Menu menu = new Menu(MENU.DRASHBOAD, MENU_ITEM.NONE);

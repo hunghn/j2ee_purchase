@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value={"/supplier"})
-public class SupplierController {
+@RequestMapping(value = { "/product" })
+public class ProductController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(SupplierController.class);
 
 	@RequestMapping(value = { "/list.do" }, method = RequestMethod.GET)
-	public String list(Model model, HttpSession session) {
-		logger.info("Load Supplier List.");
+	public String home(Model model, HttpSession session) {
+		logger.info("Load Product List.");
 		model.addAttribute("URL", "../resources/");
 		model.addAttribute("BASE_URL", "../");
-		model.addAttribute("TITLE", "ERP Admin | List Supplier");
+		model.addAttribute("TITLE", "ERP Admin | List Product");
 
-		Menu menu = new Menu(MENU.PURCHASE, MENU_ITEM.PURCHASE_SUPPLIERS                                                                                                                                                                                                                                                                                     );
+		Menu menu = new Menu(MENU.PRODUCTS, MENU_ITEM.PRODUCTS_PRODUCTS);
 		model.addAttribute("MENU", menu);
 
-		return "supplier/list";
+		return "product/list";
 	}
 	
 	@RequestMapping(value = { "/create.do" }, method = RequestMethod.GET)
@@ -37,11 +37,11 @@ public class SupplierController {
 		logger.info("Load Supplier List.");
 		model.addAttribute("URL", "../resources/");
 		model.addAttribute("BASE_URL", "../");
-		model.addAttribute("TITLE", "ERP Admin | Create Supplier");
+		model.addAttribute("TITLE", "ERP Admin | Create Product");
 
-		Menu menu = new Menu(MENU.PURCHASE, MENU_ITEM.PURCHASE_SUPPLIERS                                                                                                                                                                                                                                                                                     );
+		Menu menu = new Menu(MENU.PRODUCTS, MENU_ITEM.PRODUCTS_PRODUCTS                                                                                                                                                                                                                                                                                     );
 		model.addAttribute("MENU", menu);
 
-		return "supplier/create";
+		return "product/create";
 	}
 }
