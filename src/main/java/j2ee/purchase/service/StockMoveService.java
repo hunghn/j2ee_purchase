@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service;
+package j2ee.purchase.service;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.StockMove;
+import j2ee.purchase.model.StockMove;
 
 public interface StockMoveService {
 	public void addStockMove(StockMove stockMove);

@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service.impl;
+package j2ee.purchase.impl;
 
-import j2ee.purchase.supplier.dao.AccountTaxDAO;
-import j2ee.purchase.supplier.model.AccountTax;
-import j2ee.purchase.supplier.service.AccountTaxService;
+import j2ee.purchase.dao.AccountTaxDAO;
+import j2ee.purchase.model.AccountTax;
+import j2ee.purchase.service.AccountTaxService;
 
 import java.util.List;
 

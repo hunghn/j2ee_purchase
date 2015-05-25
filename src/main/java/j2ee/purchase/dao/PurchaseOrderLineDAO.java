@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.dao;
+package j2ee.purchase.dao;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.PurchaseOrderLine;
+import j2ee.purchase.model.PurchaseOrderLine;
 
 public interface PurchaseOrderLineDAO {
 	public void addPurchaseOrderLine(PurchaseOrderLine purchaseOrderLine);

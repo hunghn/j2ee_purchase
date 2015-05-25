@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.dao;
+package j2ee.purchase.dao;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.User;
+import j2ee.purchase.model.User;
 
 public interface UserDAO {
 	public void addUser(User user);

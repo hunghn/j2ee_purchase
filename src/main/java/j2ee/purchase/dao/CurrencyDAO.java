@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.dao;
+package j2ee.purchase.dao;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.Currency;
+import j2ee.purchase.model.Currency;
 
 public interface CurrencyDAO {
 	public void addCurrency(Currency currency);

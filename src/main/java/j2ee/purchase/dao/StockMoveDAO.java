@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.dao;
+package j2ee.purchase.dao;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.StockMove;
+import j2ee.purchase.model.StockMove;
 
 public interface StockMoveDAO {
 	public void addStockMove(StockMove stockMove);

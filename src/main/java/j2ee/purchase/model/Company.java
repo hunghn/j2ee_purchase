@@ -1,14 +1,19 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "COMPANY")
@@ -24,7 +29,8 @@ public class Company {
 	private String phone;
 	private String address;
 
-	@OneToMany(mappedBy = "company")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "COMPANY_USER", joinColumns = { @JoinColumn(name = "company_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "user_id", nullable = false, updatable = false) })
 	private Set<User> users;
 
 	@OneToMany(mappedBy = "company")
@@ -32,10 +38,10 @@ public class Company {
 
 	@OneToMany(mappedBy = "company")
 	private Set<PurchaseOrder> purchase_orders;
-	
+
 	@OneToMany(mappedBy = "company")
 	private Set<PurchaseOrderLine> purchase_order_lines;
-	
+
 	@OneToMany(mappedBy = "company")
 	private Set<StockMove> stock_moves;
 
@@ -107,7 +113,8 @@ public class Company {
 		return purchase_order_lines;
 	}
 
-	public void setPurchase_order_lines(Set<PurchaseOrderLine> purchase_order_lines) {
+	public void setPurchase_order_lines(
+			Set<PurchaseOrderLine> purchase_order_lines) {
 		this.purchase_order_lines = purchase_order_lines;
 	}
 
@@ -119,5 +126,9 @@ public class Company {
 		this.stock_moves = stock_moves;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+	}
+
 }

@@ -1,4 +1,4 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Set;
 
@@ -48,4 +48,8 @@ public class Currency {
 		this.purchase_orders = purchase_orders;
 	}
 
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+	}
 }

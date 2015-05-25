@@ -1,4 +1,4 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Date;
 import java.util.Set;
@@ -48,8 +48,8 @@ public class PurchaseOrder {
 	private Date bid_date;
 	private Date bid_validity;
 	private Date date_order;
-	
-	@OneToMany(mappedBy="purchase_order")
+
+	@OneToMany(mappedBy = "purchase_order")
 	private Set<PurchaseOrderLine> purchase_order_lines;
 
 	public Integer getId() {
@@ -170,6 +170,12 @@ public class PurchaseOrder {
 
 	public void setStock_location(StockLocation stock_location) {
 		this.stock_location = stock_location;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+
 	}
 
 }

@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service;
+package j2ee.purchase.service;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.User;
+import j2ee.purchase.model.User;
 
 public interface UserService {
 	public void addUser(User user);

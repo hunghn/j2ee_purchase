@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service;
+package j2ee.purchase.service;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.StockLocation;
+import j2ee.purchase.model.StockLocation;
 
 public interface StockLocationService {
 	public void addStockLocation(StockLocation stockLocation);

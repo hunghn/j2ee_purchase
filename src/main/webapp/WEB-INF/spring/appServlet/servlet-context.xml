@@ -53,7 +53,7 @@
 				<beans:value>j2ee.purchase.model.Currency</beans:value>
 				<beans:value>j2ee.purchase.model.Product</beans:value>
 				<beans:value>j2ee.purchase.model.StockMove</beans:value>
-				<beans:value>j2ee.purchase.model.PurchaseOrder
+				<beans:value>j2ee.purchase.model.AccountTax
 				</beans:value>
 				<beans:value>j2ee.purchase.model.PurchaseOrderLine
 				</beans:value>

@@ -1,7 +1,7 @@
-package j2ee.purchase.supplier.dao.impl;
+package j2ee.purchase.dao.impl;
 
-import j2ee.purchase.supplier.dao.UserDAO;
-import j2ee.purchase.supplier.model.User;
+import j2ee.purchase.dao.UserDAO;
+import j2ee.purchase.model.User;
 
 import java.util.List;
 

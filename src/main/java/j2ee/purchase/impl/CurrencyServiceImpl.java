@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service.impl;
+package j2ee.purchase.impl;
 
-import j2ee.purchase.supplier.dao.CurrencyDAO;
-import j2ee.purchase.supplier.model.Currency;
-import j2ee.purchase.supplier.service.CurrencyService;
+import j2ee.purchase.dao.CurrencyDAO;
+import j2ee.purchase.model.Currency;
+import j2ee.purchase.service.CurrencyService;
 
 import java.util.List;
 

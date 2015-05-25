@@ -1,10 +1,13 @@
-package j2ee.purchase.supplier.controller;
+package j2ee.purchase.controller;
 
-import j2ee.purchase.supplier.model.Company;
-import j2ee.purchase.supplier.model.User;
-import j2ee.purchase.supplier.service.CompanyService;
-import j2ee.purchase.supplier.service.PartnerService;
-import j2ee.purchase.supplier.service.UserService;
+import j2ee.purchase.model.Company;
+import j2ee.purchase.model.User;
+import j2ee.purchase.service.CompanyService;
+import j2ee.purchase.service.PartnerService;
+import j2ee.purchase.service.UserService;
+import j2ee.purchase.utils.Menu;
+import j2ee.purchase.utils.Menu.MENU;
+import j2ee.purchase.utils.Menu.MENU_ITEM;
 
 import java.io.IOException;
 
@@ -56,15 +59,8 @@ public class HomeController {
 	public String index(Model model, HttpSession session) {
 		logger.info("Load Login.");
 		model.addAttribute("URL", "resources/");
-
-		Company company = new Company();
-		company.setName("Company 1");
-		company.setEmail("email");
-		company.setPhone("phone");
-		company.setAddress("address");
+		model.addAttribute("TITLE", "ERP Admin | Log in");
 		
-		companyService.addCompany(company);
-
 		return "login";
 	}
 
@@ -72,7 +68,11 @@ public class HomeController {
 	public String home(Model model, HttpSession session) {
 		logger.info("Load Home Page.");
 		model.addAttribute("URL", "resources/");
+		model.addAttribute("TITLE", "ERP Admin | Dashboard");
 
+		Menu menu = new Menu(MENU.DRASHBOAD, MENU_ITEM.NONE);
+		model.addAttribute("MENU", menu);
+		
 		return "index";
 	}
 

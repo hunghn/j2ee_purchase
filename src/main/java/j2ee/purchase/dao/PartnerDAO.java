@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.dao;
+package j2ee.purchase.dao;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.Partner;
+import j2ee.purchase.model.Partner;
 
 public interface PartnerDAO {
 	public void addPartner(Partner partner);

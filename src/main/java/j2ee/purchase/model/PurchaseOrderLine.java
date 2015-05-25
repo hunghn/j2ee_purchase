@@ -1,11 +1,15 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -43,6 +47,18 @@ public class PurchaseOrderLine {
 
 	@OneToMany(mappedBy = "purchase_order_line")
 	private Set<StockMove> stock_moves;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "PURCHASEORDERLINE_ACCOUNTTAX", joinColumns = { @JoinColumn(name = "purchase_order_line_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "account_tax_id", nullable = false, updatable = false) })
+	private Set<AccountTax> accounttaxs;
+
+	public Set<AccountTax> getAccounttaxes() {
+		return accounttaxs;
+	}
+
+	public void setAccounttaxes(Set<AccountTax> accounttaxs) {
+		this.accounttaxs = accounttaxs;
+	}
 
 	public Integer getId() {
 		return id;
@@ -138,6 +154,12 @@ public class PurchaseOrderLine {
 
 	public void setStock_moves(Set<StockMove> stock_moves) {
 		this.stock_moves = stock_moves;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+
 	}
 
 }

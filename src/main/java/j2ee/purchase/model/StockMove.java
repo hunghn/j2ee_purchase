@@ -1,4 +1,4 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -133,6 +133,12 @@ public class StockMove {
 
 	public void setPurchase_order_line(PurchaseOrderLine purchase_order_line) {
 		this.purchase_order_line = purchase_order_line;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+
 	}
 
 }

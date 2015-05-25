@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.dao;
+package j2ee.purchase.dao;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.AccountTax;
+import j2ee.purchase.model.AccountTax;
 
 public interface AccountTaxDAO {
 	public void addAccountTax(AccountTax accountTax);

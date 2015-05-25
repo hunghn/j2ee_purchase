@@ -1,7 +1,7 @@
-package j2ee.purchase.supplier.dao.impl;
+package j2ee.purchase.dao.impl;
 
-import j2ee.purchase.supplier.dao.StockMoveDAO;
-import j2ee.purchase.supplier.model.StockMove;
+import j2ee.purchase.dao.StockMoveDAO;
+import j2ee.purchase.model.StockMove;
 
 import java.util.List;
 

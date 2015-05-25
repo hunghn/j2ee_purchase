@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service;
+package j2ee.purchase.service;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.Company;
+import j2ee.purchase.model.Company;
 
 public interface CompanyService {
 	public void addCompany(Company company);

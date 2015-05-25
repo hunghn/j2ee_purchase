@@ -1,4 +1,4 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Date;
 import java.util.Set;
@@ -76,6 +76,12 @@ public class Product {
 
 	public void setStock_moves(Set<StockMove> stock_moves) {
 		this.stock_moves = stock_moves;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+
 	}
 
 }

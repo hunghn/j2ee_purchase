@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service;
+package j2ee.purchase.service;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.Partner;
+import j2ee.purchase.model.Partner;
 
 public interface PartnerService {
 	public void addPartner(Partner partner);

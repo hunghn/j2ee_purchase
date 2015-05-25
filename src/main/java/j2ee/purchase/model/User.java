@@ -1,15 +1,15 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,9 +24,12 @@ public class User {
 
 	private Boolean active;
 
-	@ManyToOne
-	@JoinColumn(name = "company_id")
-	private Company company;
+	// @ManyToOne
+	// @JoinColumn(name = "company_id")
+	// private Company company;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	private Set<Company> companies;
 
 	private Date create_date;
 	private String username;
@@ -36,15 +39,23 @@ public class User {
 	private Integer user_type;
 	private Date login_date;
 
-	@ManyToOne
-	@JoinColumn(name = "partner_id")
-	private Partner partner;
+	// @ManyToOne
+	// @JoinColumn(name = "partner_id")
+	// private Partner partner;
 
 	@OneToMany(mappedBy = "user")
 	private Set<Partner> partners;
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Set<Company> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(Set<Company> companies) {
+		this.companies = companies;
 	}
 
 	public void setId(Integer id) {
@@ -59,13 +70,13 @@ public class User {
 		this.active = active;
 	}
 
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+	// public Company getCompany() {
+	// return company;
+	// }
+	//
+	// public void setCompany(Company company) {
+	// this.company = company;
+	// }
 
 	public Date getCreate_date() {
 		return create_date;
@@ -123,13 +134,13 @@ public class User {
 		this.login_date = login_date;
 	}
 
-	public Partner getPartner() {
-		return partner;
-	}
-
-	public void setPartner(Partner partner) {
-		this.partner = partner;
-	}
+	// public Partner getPartner() {
+	// return partner;
+	// }
+	//
+	// public void setPartner(Partner partner) {
+	// this.partner = partner;
+	// }
 
 	public Set<Partner> getPartners() {
 		return partners;

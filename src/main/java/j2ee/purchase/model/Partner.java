@@ -1,4 +1,4 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Date;
 import java.util.Set;
@@ -43,8 +43,8 @@ public class Partner {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "partner")
-	private Set<User> users;
+	// @OneToMany(mappedBy = "partner")
+	// private Set<User> users;
 
 	@OneToMany(mappedBy = "partner")
 	private Set<PurchaseOrder> purchase_orders;
@@ -63,13 +63,13 @@ public class Partner {
 		this.id = id;
 	}
 
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
+	// public Set<User> getUsers() {
+	// return users;
+	// }
+	//
+	// public void setUsers(Set<User> users) {
+	// this.users = users;
+	// }
 
 	public String getName() {
 		return name;
@@ -198,6 +198,11 @@ public class Partner {
 
 	public void setStock_moves(Set<StockMove> stock_moves) {
 		this.stock_moves = stock_moves;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
 	}
 
 }

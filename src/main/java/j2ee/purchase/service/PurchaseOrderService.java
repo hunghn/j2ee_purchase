@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.service;
+package j2ee.purchase.service;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.PurchaseOrder;
+import j2ee.purchase.model.PurchaseOrder;
 
 public interface PurchaseOrderService {
 	public void addPurchaseOrder(PurchaseOrder purchaseOrder);

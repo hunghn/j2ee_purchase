@@ -1,10 +1,14 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
+
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +24,17 @@ public class AccountTax {
 	private Float amount;
 	private Double price_include;
 	private String description;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "accounttaxs")
+	private Set<PurchaseOrderLine> purchaseorderlines;
+
+	public Set<PurchaseOrderLine> getPurchaseorderlines() {
+		return purchaseorderlines;
+	}
+
+	public void setPurchaseorderlines(Set<PurchaseOrderLine> purchaseorderlines) {
+		this.purchaseorderlines = purchaseorderlines;
+	}
 
 	public Integer getId() {
 		return id;
@@ -69,4 +84,8 @@ public class AccountTax {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+	}
 }

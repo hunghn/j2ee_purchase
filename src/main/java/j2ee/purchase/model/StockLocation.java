@@ -1,4 +1,4 @@
-package j2ee.purchase.supplier.model;
+package j2ee.purchase.model;
 
 import java.util.Set;
 
@@ -22,7 +22,7 @@ public class StockLocation {
 	private String name;
 	private Boolean active;
 	private String note;
-	
+
 	@OneToMany(mappedBy = "stock_location")
 	private Set<PurchaseOrder> purchase_orders;
 
@@ -56,6 +56,12 @@ public class StockLocation {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + id + ", Name: " + name;
+
 	}
 
 }

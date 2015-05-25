@@ -1,8 +1,8 @@
-package j2ee.purchase.supplier.dao;
+package j2ee.purchase.dao;
 
 import java.util.List;
 
-import j2ee.purchase.supplier.model.StockLocation;
+import j2ee.purchase.model.StockLocation;
 
 public interface StockLocationDAO {
 	public void addStockLocation(StockLocation stockLocation);
