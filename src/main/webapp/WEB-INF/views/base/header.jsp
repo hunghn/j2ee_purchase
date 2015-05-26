@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="j2ee.purchase.model.User"%>
 <header class="main-header">
 
 	<!-- Logo -->
@@ -31,18 +33,22 @@
 						class="fa fa-flag-o"></i>
 				</a></li>
 				<!-- User Account: style can be found in dropdown.less -->
+				<%
+					User user = (User)session.getAttribute("USERLOGIN");
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				%>
 				<li class="dropdown user user-menu"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <img
-						src="${URL}dist/img/user2-160x160.jpg" class="user-image"
-						alt="User Image" /> <span class="hidden-xs">Trungpv</span>
+						src="${URL}dist/img/avatar5.png" class="user-image"
+						alt="User Image" /> <span class="hidden-xs"><%=user.getUsername() %></span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
 						<li class="user-header"><img
-							src="${URL}dist/img/user2-160x160.jpg" class="img-circle"
+							src="${URL}dist/img/avatar5.png" class="img-circle"
 							alt="User Image" />
 							<p>
-								Trungpv - Administrator <small>Member since Nov. 2012</small>
+								<%=user.getUsername() %> - Administrator <small>Member since <%=sdf.format(user.getCreate_date()) %></small>
 							</p></li>
 						<!-- Menu Footer-->
 						<li class="user-footer">
@@ -50,7 +56,7 @@
 								<a href="#" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
-								<a href="#" class="btn btn-default btn-flat">Sign out</a>
+								<a href="logout.do" class="btn btn-default btn-flat">Sign out</a>
 							</div>
 						</li>
 					</ul></li>

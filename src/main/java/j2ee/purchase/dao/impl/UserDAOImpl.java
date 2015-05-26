@@ -5,6 +5,7 @@ import j2ee.purchase.model.User;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -61,6 +62,19 @@ public class UserDAOImpl implements UserDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		User user = (User) session.load(User.class, new Integer(id));
 		return user;
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String hql = "from User as o where o.email=:email";
+		Query query = session.createQuery(hql);
+		query.setParameter("email", email);
+		List<User> lstUser = query.list();
+		if(!lstUser.isEmpty()){
+			return lstUser.get(0);
+		}
+		return null;
 	}
 
 }

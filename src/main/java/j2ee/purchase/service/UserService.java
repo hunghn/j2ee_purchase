@@ -14,4 +14,10 @@ public interface UserService {
 	public User getUserById(Integer id);
 
 	public void removeUser(Integer id);
+	
+	public boolean checkLogin(User user);	
+	
+	public boolean login(String email, String password);
+	
+	public User getUserByEmail(String email);
 }

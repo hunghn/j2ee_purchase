@@ -1,3 +1,12 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
+<c:choose>
+	<c:when test="${not empty sessionScope['USERLOGIN']}">
+	</c:when>
+	<c:otherwise>
+		<c:redirect url="/" />
+	</c:otherwise>
+</c:choose>
 <%@ include file="./base/head.jsp"%>
 
 </head>
