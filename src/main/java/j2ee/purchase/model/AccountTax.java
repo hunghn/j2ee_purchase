@@ -1,23 +1,32 @@
 package j2ee.purchase.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "ACCOUNTTAX")
-public class AccountTax {
+public class AccountTax implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6143224711195016654L;
+
 	@Id
-	@Column(name = "account_tax_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "account_tax_id", columnDefinition = "CHAR(32)")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
 
 	private String name;
 	private Boolean active;
@@ -25,6 +34,7 @@ public class AccountTax {
 	private Double price_include;
 	private String description;
 
+	@JsonBackReference
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "accounttaxs")
 	private Set<PurchaseOrderLine> purchaseorderlines;
 
@@ -36,11 +46,11 @@ public class AccountTax {
 		this.purchaseorderlines = purchaseorderlines;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

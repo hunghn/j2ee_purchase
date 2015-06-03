@@ -11,7 +11,7 @@ public interface CurrencyService {
 
 	public List<Currency> lstCurrencys();
 
-	public Currency getCurrencyById(Integer id);
+	public Currency getCurrencyById(String id);
 
-	public void removeCurrency(Integer id);
+	public void removeCurrency(String id);
 }

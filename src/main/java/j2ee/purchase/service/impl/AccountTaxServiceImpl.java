@@ -1,4 +1,4 @@
-package j2ee.purchase.impl;
+package j2ee.purchase.service.impl;
 
 import j2ee.purchase.dao.AccountTaxDAO;
 import j2ee.purchase.model.AccountTax;
@@ -6,17 +6,16 @@ import j2ee.purchase.service.AccountTaxService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class AccountTaxServiceImpl implements AccountTaxService {
 
+	@Autowired
 	private AccountTaxDAO accountTaxDAO;
-
-	public void setAccountTaxDAO(AccountTaxDAO accountTaxDAO) {
-		this.accountTaxDAO = accountTaxDAO;
-	}
 
 	@Override
 	@Transactional
@@ -40,13 +39,13 @@ public class AccountTaxServiceImpl implements AccountTaxService {
 
 	@Override
 	@Transactional
-	public AccountTax getAccountTaxById(Integer id) {
+	public AccountTax getAccountTaxById(String id) {
 		return accountTaxDAO.getAccountTaxById(id);
 	}
 
 	@Override
 	@Transactional
-	public void removeAccountTax(Integer id) {
+	public void removeAccountTax(String id) {
 		accountTaxDAO.removeAccountTax(id);
 	}
 

@@ -11,7 +11,7 @@ public interface PurchaseOrderService {
 
 	public List<PurchaseOrder> lstPurchaseOrders();
 
-	public PurchaseOrder getPurchaseOrderById(Integer id);
+	public PurchaseOrder getPurchaseOrderById(String id);
 
-	public void removePurchaseOrder(Integer id);
+	public void removePurchaseOrder(String id);
 }

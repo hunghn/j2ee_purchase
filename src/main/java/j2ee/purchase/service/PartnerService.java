@@ -11,7 +11,7 @@ public interface PartnerService {
 
 	public List<Partner> lstPartners();
 
-	public Partner getPartnerById(Integer id);
+	public Partner getPartnerById(String id);
 
-	public void removePartner(Integer id);
+	public void removePartner(String id);
 }

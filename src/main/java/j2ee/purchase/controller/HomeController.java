@@ -27,7 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Handles requests for the application home page.
+ * 
+ * @author trungpv
+ *
  */
 @Controller
 public class HomeController {
@@ -35,38 +37,33 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 
+	@Autowired
 	private UserService userService;
-
-	@Autowired(required = true)
-	@Qualifier(value = "userService")
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
 
 	@RequestMapping(value = { "/", "/index", "/login.do" }, method = RequestMethod.GET)
 	public String index(Model model, HttpSession session) {
 		logger.info("Load Login.");
 		model.addAttribute("URL", "resources/");
 		model.addAttribute("BASE_URL", "./");
-		model.addAttribute("TITLE", "ERP Admin | Log in");
+		model.addAttribute("TITLE", "Log in");
 
 		String token = Security.getSalt();
 		model.addAttribute("TOKEN", token);
 
 		session.setAttribute("TOKEN", token);
-		
-//		User user = new User();
-//		user.setActive(true);
-//		user.setEmail("phamvantrung.11193@gmail.com");
-//		String salt = Security.getSalt();
-//		user.setSalt(salt);
-//		user.setPassword(Security.encryptPassword("123456"+salt));
-//		user.setUser_type(1);
-//		user.setUsername("trungpv");
-//		user.setCreate_date(new Date());
-//
-//		userService.addUser(user);
-		
+
+//		 User user = new User();
+//		 user.setActive(true);
+//		 user.setEmail("phamvantrung.11193@gmail.com");
+//		 String salt = Security.getSalt();
+//		 user.setSalt(salt);
+//		 user.setPassword(Security.encryptPassword("01111993$T"+salt));
+//		 user.setUser_type(1);
+//		 user.setUsername("trungpv");
+//		 user.setCreate_date(new Date());
+//		
+//		 userService.addUser(user);
+
 		return "login";
 	}
 
@@ -75,7 +72,7 @@ public class HomeController {
 		logger.info("Load Home Page.");
 		model.addAttribute("URL", "resources/");
 		model.addAttribute("BASE_URL", "./");
-		model.addAttribute("TITLE", "ERP Admin | Dashboard");
+		model.addAttribute("TITLE", "Dashboard");
 
 		Menu menu = new Menu(MENU.DRASHBOAD, MENU_ITEM.NONE);
 		model.addAttribute("MENU", menu);
@@ -101,7 +98,7 @@ public class HomeController {
 				logger.info("Load Home Page.");
 				model.addObject("URL", "resources/");
 				model.addObject("BASE_URL", "./");
-				model.addObject("TITLE", "ERP Admin | Dashboard");
+				model.addObject("TITLE", "Dashboard");
 
 				Menu menu = new Menu(MENU.DRASHBOAD, MENU_ITEM.NONE);
 				model.addObject("MENU", menu);
@@ -118,10 +115,10 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("login");
 		model.addObject("URL", "resources/");
 		model.addObject("BASE_URL", "./");
-		model.addObject("TITLE", "ERP Admin | Log in");
+		model.addObject("TITLE", "Log in");
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String doLogout(HttpSession session, HttpServletResponse response) {
@@ -142,6 +139,16 @@ public class HomeController {
 		}
 
 		return "false";
+	}
+	
+	@RequestMapping(value = { "/404", }, method = RequestMethod.GET)
+	public String error404(Model model, HttpSession session) {
+		logger.info("Load Error 404 Page.");
+		model.addAttribute("URL", "resources/");
+		model.addAttribute("BASE_URL", "./");
+		model.addAttribute("TITLE", "Error 404");
+
+		return "error/404";
 	}
 
 }

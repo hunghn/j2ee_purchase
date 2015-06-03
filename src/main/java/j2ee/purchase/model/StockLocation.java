@@ -1,36 +1,46 @@
 package j2ee.purchase.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "STOCKLOCATION")
-public class StockLocation {
+public class StockLocation implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -764621533025955792L;
 
 	@Id
-	@Column(name = "stock_location_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "stock_location_id", columnDefinition = "CHAR(32)")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
 
 	private String name;
 	private Boolean active;
 	private String note;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "stock_location")
 	private Set<PurchaseOrder> purchase_orders;
 
-	public Integer getStock_location_id() {
+	public String getId() {
 		return id;
 	}
 
-	public void setStock_location_id(Integer stock_location_id) {
+	public void setId(String stock_location_id) {
 		this.id = stock_location_id;
 	}
 

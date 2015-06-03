@@ -1,4 +1,4 @@
-package j2ee.purchase.impl;
+package j2ee.purchase.service.impl;
 
 import j2ee.purchase.dao.CurrencyDAO;
 import j2ee.purchase.model.Currency;
@@ -6,17 +6,16 @@ import j2ee.purchase.service.CurrencyService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class CurrencyServiceImpl implements CurrencyService {
 
+	@Autowired
 	private CurrencyDAO currencyDAO;
-
-	public void setCurrencyDAO(CurrencyDAO currencyDAO) {
-		this.currencyDAO = currencyDAO;
-	}
 
 	@Override
 	@Transactional
@@ -40,13 +39,13 @@ public class CurrencyServiceImpl implements CurrencyService {
 
 	@Override
 	@Transactional
-	public Currency getCurrencyById(Integer id) {
+	public Currency getCurrencyById(String id) {
 		return currencyDAO.getCurrencyById(id);
 	}
 
 	@Override
 	@Transactional
-	public void removeCurrency(Integer id) {
+	public void removeCurrency(String id) {
 		currencyDAO.removeCurrency(id);
 	}
 

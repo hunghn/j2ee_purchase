@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,15 +18,16 @@ public class ProductDAOImpl implements ProductDAO {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ProductDAOImpl.class);
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Override
 	public void addProduct(Product product) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.persist(product);
 		logger.info("Product saved successfully, Product Details=" + product);
 
@@ -33,16 +35,15 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public void updateProduct(Product product) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.update(product);
 		logger.info("Product updated successfully, Product Details=" + product);
 	}
 
 	@Override
-	public void removeProduct(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Product product = (Product) session
-				.load(Product.class, new Integer(id));
+	public void removeProduct(String id) {
+		Session session = this.getCurrentSession();
+		Product product = (Product) session.get(Product.class, id);
 		if (null != product) {
 			session.delete(product);
 		}
@@ -52,16 +53,15 @@ public class ProductDAOImpl implements ProductDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> lstProduct() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		List<Product> lstProduct = session.createQuery("from Product").list();
 		return lstProduct;
 	}
 
 	@Override
-	public Product getProductById(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Product product = (Product) session
-				.load(Product.class, new Integer(id));
+	public Product getProductById(String id) {
+		Session session = this.getCurrentSession();
+		Product product = (Product) session.get(Product.class, id);
 		return product;
 	}
 

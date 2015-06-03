@@ -1,26 +1,35 @@
 package j2ee.purchase.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "PURCHASEORDER")
-public class PurchaseOrder {
+public class PurchaseOrder implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1179841382349348461L;
 
 	@Id
-	@Column(name = "purchase_order_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "purchase_order_id", columnDefinition = "CHAR(32)")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
 
 	@ManyToOne
 	@JoinColumn(name = "company_id")
@@ -49,14 +58,15 @@ public class PurchaseOrder {
 	private Date bid_validity;
 	private Date date_order;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "purchase_order")
 	private Set<PurchaseOrderLine> purchase_order_lines;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

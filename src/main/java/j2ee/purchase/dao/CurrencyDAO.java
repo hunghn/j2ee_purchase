@@ -9,9 +9,9 @@ public interface CurrencyDAO {
 
 	public void updateCurrency(Currency currency);
 
-	public void removeCurrency(Integer id);
+	public void removeCurrency(String id);
 
 	public List<Currency> lstCurrency();
 
-	public Currency getCurrencyById(Integer id);
+	public Currency getCurrencyById(String id);
 }

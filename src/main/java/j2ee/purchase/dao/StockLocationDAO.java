@@ -9,9 +9,9 @@ public interface StockLocationDAO {
 
 	public void updateStockLocation(StockLocation stockLocation);
 
-	public void removeStockLocation(Integer id);
+	public void removeStockLocation(String id);
 
 	public List<StockLocation> lstStockLocation();
 
-	public StockLocation getStockLocationById(Integer id);
+	public StockLocation getStockLocationById(String id);
 }

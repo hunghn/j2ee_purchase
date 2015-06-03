@@ -1,6 +1,9 @@
 <%@page import="j2ee.purchase.utils.Menu.MENU_ITEM"%>
 <%@page import="j2ee.purchase.utils.Menu.MENU"%>
 <%@page import="j2ee.purchase.utils.Menu"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	Menu menu = (Menu) request.getAttribute("MENU");
 %>
@@ -95,6 +98,17 @@
 					<li <%if (menu.getMenu_item() == MENU_ITEM.CONFIG_PRODUCTS) {%>
 						class="active" <%}%>><a href="${BASE_URL}#"><i
 							class="fa fa-dot-circle-o"></i> Products</a></li>
+				</ul></li>
+
+			<li
+				class="treeview <%if (menu.getMenu() == MENU.MANAGER) {%>active<%}%>"><a
+				href="#"> <i class="fa fa-reorder"></i> <span>Manager</span> <i
+					class="fa fa-angle-left pull-right"></i>
+			</a>
+				<ul class="treeview-menu">
+					<li <%if (menu.getMenu_item() == MENU_ITEM.MANAGER_COMPANIES) {%>
+						class="active" <%}%>><a href="${BASE_URL}company/list.do"><i
+							class="fa fa-dot-circle-o"></i> Company</a></li>
 				</ul></li>
 		</ul>
 	</section>

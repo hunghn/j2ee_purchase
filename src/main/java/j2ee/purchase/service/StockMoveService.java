@@ -11,7 +11,7 @@ public interface StockMoveService {
 
 	public List<StockMove> lstStockMoves();
 
-	public StockMove getStockMoveById(Integer id);
+	public StockMove getStockMoveById(String id);
 
-	public void removeStockMove(Integer id);
+	public void removeStockMove(String id);
 }

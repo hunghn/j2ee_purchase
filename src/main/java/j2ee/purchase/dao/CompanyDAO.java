@@ -9,9 +9,9 @@ public interface CompanyDAO {
 
 	public void updateCompany(Company company);
 
-	public void removeCompany(Integer id);
+	public void removeCompany(String id);
 
 	public List<Company> lstCompany();
 
-	public Company getCompanyById(Integer id);
+	public Company getCompanyById(String id);
 }

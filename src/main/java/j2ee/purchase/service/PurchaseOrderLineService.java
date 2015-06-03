@@ -11,7 +11,7 @@ public interface PurchaseOrderLineService {
 
 	public List<PurchaseOrderLine> lstPurchaseOrderLines();
 
-	public PurchaseOrderLine getPurchaseOrderLineById(Integer id);
+	public PurchaseOrderLine getPurchaseOrderLineById(String id);
 
-	public void removePurchaseOrderLine(Integer id);
+	public void removePurchaseOrderLine(String id);
 }

@@ -24,7 +24,7 @@ public class SupplierController {
 		logger.info("Load Supplier List.");
 		model.addAttribute("URL", "../resources/");
 		model.addAttribute("BASE_URL", "../");
-		model.addAttribute("TITLE", "ERP Admin | List Supplier");
+		model.addAttribute("TITLE", "List Supplier");
 
 		Menu menu = new Menu(MENU.PURCHASE, MENU_ITEM.PURCHASE_SUPPLIERS                                                                                                                                                                                                                                                                                     );
 		model.addAttribute("MENU", menu);
@@ -37,7 +37,7 @@ public class SupplierController {
 		logger.info("Load Supplier List.");
 		model.addAttribute("URL", "../resources/");
 		model.addAttribute("BASE_URL", "../");
-		model.addAttribute("TITLE", "ERP Admin | Create Supplier");
+		model.addAttribute("TITLE", "Create Supplier");
 
 		Menu menu = new Menu(MENU.PURCHASE, MENU_ITEM.PURCHASE_SUPPLIERS                                                                                                                                                                                                                                                                                     );
 		model.addAttribute("MENU", menu);

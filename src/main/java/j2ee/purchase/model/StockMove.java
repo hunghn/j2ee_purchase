@@ -1,19 +1,31 @@
 package j2ee.purchase.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "STOCKMOVE")
-public class StockMove {
+public class StockMove implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6490241911580265547L;
 	@Id
-	@Column(name = "stock_move_id")
-	private Integer id;
+	@Column(name = "stock_move_id", columnDefinition = "CHAR(32)")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
+	
 	private String origin;
 	private Float product_uos_qty;
 	private Double price_unit;
@@ -39,11 +51,11 @@ public class StockMove {
 	@JoinColumn(name = "purchase_order_line_id")
 	private PurchaseOrderLine purchase_order_line;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

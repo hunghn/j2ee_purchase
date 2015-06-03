@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${TITLE}</title>
+<title>ERP Admin | ${TITLE}</title>
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
@@ -22,6 +23,10 @@
              folder instead of downloading all of them to reduce the load. -->
 <link href="${URL}dist/css/skins/_all-skins.min.css" rel="stylesheet"
 	type="text/css" />
+<!-- Boostrap Validator -->
+<link
+	href="${URL}plugins/bootstrap-validator/css/bootstrapValidator.min.css"
+	rel="stylesheet" type="text/css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

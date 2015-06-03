@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,51 +18,54 @@ public class AccountTaxDAOImpl implements AccountTaxDAO {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AccountTaxDAOImpl.class);
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Override
 	public void addAccountTax(AccountTax accountTax) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.persist(accountTax);
-		logger.info("AccountTax saved successfully, AccountTax Details=" + accountTax);
+		logger.info("AccountTax saved successfully, AccountTax Details="
+				+ accountTax);
 
 	}
 
 	@Override
 	public void updateAccountTax(AccountTax accountTax) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.update(accountTax);
-		logger.info("AccountTax updated successfully, AccountTax Details=" + accountTax);
+		logger.info("AccountTax updated successfully, AccountTax Details="
+				+ accountTax);
 	}
 
 	@Override
-	public void removeAccountTax(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		AccountTax accountTax = (AccountTax) session
-				.load(AccountTax.class, new Integer(id));
+	public void removeAccountTax(String id) {
+		Session session = this.getCurrentSession();
+		AccountTax accountTax = (AccountTax) session.get(AccountTax.class, id);
 		if (null != accountTax) {
 			session.delete(accountTax);
 		}
-		logger.info("AccountTax deleted successfully, AccountTax details=" + accountTax);
+		logger.info("AccountTax deleted successfully, AccountTax details="
+				+ accountTax);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AccountTax> lstAccountTax() {
-		Session session = this.sessionFactory.getCurrentSession();
-		List<AccountTax> lstAccountTax = session.createQuery("from AccountTax").list();
+		Session session = this.getCurrentSession();
+		List<AccountTax> lstAccountTax = session.createQuery("from AccountTax")
+				.list();
 		return lstAccountTax;
 	}
 
 	@Override
-	public AccountTax getAccountTaxById(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		AccountTax accountTax = (AccountTax) session
-				.load(AccountTax.class, new Integer(id));
+	public AccountTax getAccountTaxById(String id) {
+		Session session = this.getCurrentSession();
+		AccountTax accountTax = (AccountTax) session.get(AccountTax.class, id);
 		return accountTax;
 	}
 

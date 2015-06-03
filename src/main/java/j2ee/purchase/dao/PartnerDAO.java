@@ -9,9 +9,9 @@ public interface PartnerDAO {
 
 	public void updatePartner(Partner partner);
 
-	public void removePartner(Integer id);
+	public void removePartner(String id);
 
 	public List<Partner> lstPartner();
 
-	public Partner getPartnerById(Integer id);
+	public Partner getPartnerById(String id);
 }

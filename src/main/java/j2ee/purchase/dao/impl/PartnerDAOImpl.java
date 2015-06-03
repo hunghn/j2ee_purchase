@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,15 +18,16 @@ public class PartnerDAOImpl implements PartnerDAO {
 	private static final Logger logger = LoggerFactory
 			.getLogger(PartnerDAOImpl.class);
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Override
 	public void addPartner(Partner partner) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.persist(partner);
 		logger.info("Partner saved successfully, Partner Details=" + partner);
 
@@ -33,15 +35,16 @@ public class PartnerDAOImpl implements PartnerDAO {
 
 	@Override
 	public void updatePartner(Partner partner) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.update(partner);
 		logger.info("Partner updated successfully, Partner Details=" + partner);
 	}
 
 	@Override
-	public void removePartner(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Partner partner = (Partner) session.load(Partner.class, new Integer(id));
+	public void removePartner(String id) {
+		Session session = this.getCurrentSession();
+		Partner partner = (Partner) session
+				.get(Partner.class, new String(id));
 		if (null != partner) {
 			session.delete(partner);
 		}
@@ -51,15 +54,16 @@ public class PartnerDAOImpl implements PartnerDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Partner> lstPartner() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		List<Partner> lstPartner = session.createQuery("from Partner").list();
 		return lstPartner;
 	}
 
 	@Override
-	public Partner getPartnerById(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Partner partner = (Partner) session.load(Partner.class, new Integer(id));
+	public Partner getPartnerById(String id) {
+		Session session = this.getCurrentSession();
+		Partner partner = (Partner) session
+				.get(Partner.class, new String(id));
 		return partner;
 	}
 

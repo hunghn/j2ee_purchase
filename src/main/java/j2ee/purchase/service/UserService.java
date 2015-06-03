@@ -11,9 +11,9 @@ public interface UserService {
 
 	public List<User> lstUsers();
 
-	public User getUserById(Integer id);
+	public User getUserById(String id);
 
-	public void removeUser(Integer id);
+	public void removeUser(String id);
 	
 	public boolean checkLogin(User user);	
 	

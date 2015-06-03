@@ -1,4 +1,4 @@
-package j2ee.purchase.impl;
+package j2ee.purchase.service.impl;
 
 import j2ee.purchase.dao.StockLocationDAO;
 import j2ee.purchase.model.StockLocation;
@@ -6,47 +6,41 @@ import j2ee.purchase.service.StockLocationService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class StockLocationServiceImpl implements StockLocationService {
 
+	@Autowired
 	private StockLocationDAO stockLocationDAO;
 
-	public void setStockLocationDAO(StockLocationDAO stockLocationDAO) {
-		this.stockLocationDAO = stockLocationDAO;
-	}
-
 	@Override
-	@Transactional
 	public void addStockLocation(StockLocation stockLocation) {
 		stockLocationDAO.addStockLocation(stockLocation);
 
 	}
 
 	@Override
-	@Transactional
 	public void updateStockLocation(StockLocation stockLocation) {
 		stockLocationDAO.updateStockLocation(stockLocation);
 
 	}
 
 	@Override
-	@Transactional
 	public List<StockLocation> lstStockLocations() {
 		return stockLocationDAO.lstStockLocation();
 	}
 
 	@Override
-	@Transactional
-	public StockLocation getStockLocationById(Integer id) {
+	public StockLocation getStockLocationById(String id) {
 		return stockLocationDAO.getStockLocationById(id);
 	}
 
 	@Override
-	@Transactional
-	public void removeStockLocation(Integer id) {
+	public void removeStockLocation(String id) {
 		stockLocationDAO.removeStockLocation(id);
 	}
 

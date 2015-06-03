@@ -1,4 +1,4 @@
-package j2ee.purchase.impl;
+package j2ee.purchase.service.impl;
 
 import j2ee.purchase.dao.PurchaseOrderDAO;
 import j2ee.purchase.model.PurchaseOrder;
@@ -6,47 +6,41 @@ import j2ee.purchase.service.PurchaseOrderService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
+	@Autowired
 	private PurchaseOrderDAO purchaseOrderDAO;
 
-	public void setPurchaseOrderDAO(PurchaseOrderDAO purchaseOrderDAO) {
-		this.purchaseOrderDAO = purchaseOrderDAO;
-	}
-
 	@Override
-	@Transactional
 	public void addPurchaseOrder(PurchaseOrder purchaseOrder) {
 		purchaseOrderDAO.addPurchaseOrder(purchaseOrder);
 
 	}
 
 	@Override
-	@Transactional
 	public void updatePurchaseOrder(PurchaseOrder purchaseOrder) {
 		purchaseOrderDAO.updatePurchaseOrder(purchaseOrder);
 
 	}
 
 	@Override
-	@Transactional
 	public List<PurchaseOrder> lstPurchaseOrders() {
 		return purchaseOrderDAO.lstPurchaseOrder();
 	}
 
 	@Override
-	@Transactional
-	public PurchaseOrder getPurchaseOrderById(Integer id) {
+	public PurchaseOrder getPurchaseOrderById(String id) {
 		return purchaseOrderDAO.getPurchaseOrderById(id);
 	}
 
 	@Override
-	@Transactional
-	public void removePurchaseOrder(Integer id) {
+	public void removePurchaseOrder(String id) {
 		purchaseOrderDAO.removePurchaseOrder(id);
 	}
 

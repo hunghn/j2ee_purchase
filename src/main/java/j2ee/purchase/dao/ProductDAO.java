@@ -9,9 +9,9 @@ public interface ProductDAO {
 
 	public void updateProduct(Product product);
 
-	public void removeProduct(Integer id);
+	public void removeProduct(String id);
 
 	public List<Product> lstProduct();
 
-	public Product getProductById(Integer id);
+	public Product getProductById(String id);
 }

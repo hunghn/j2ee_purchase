@@ -9,9 +9,9 @@ public interface AccountTaxDAO {
 
 	public void updateAccountTax(AccountTax accountTax);
 
-	public void removeAccountTax(Integer id);
+	public void removeAccountTax(String id);
 
 	public List<AccountTax> lstAccountTax();
 
-	public AccountTax getAccountTaxById(Integer id);
+	public AccountTax getAccountTaxById(String id);
 }

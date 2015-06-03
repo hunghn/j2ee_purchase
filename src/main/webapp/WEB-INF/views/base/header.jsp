@@ -1,9 +1,11 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="j2ee.purchase.model.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <header class="main-header">
 
 	<!-- Logo -->
-	<a href="home.do" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="${BASE_URL}home.do" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>ERP</b>A</span> <!-- logo for regular state and mobile devices -->
 		<span class="logo-lg"><b>ERP</b>Admin</span>
 	</a>
@@ -56,7 +58,7 @@
 								<a href="#" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
-								<a href="logout.do" class="btn btn-default btn-flat">Sign out</a>
+								<a href="${BASE_URL}logout.do" class="btn btn-default btn-flat">Sign out</a>
 							</div>
 						</li>
 					</ul></li>

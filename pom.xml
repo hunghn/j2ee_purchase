@@ -15,8 +15,24 @@
 		<hibernate.version>4.3.10.Final</hibernate.version>
 		<mysql.version>5.1.31</mysql.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
+
+		<com.googlecode.json-simple-version>1.1.1</com.googlecode.json-simple-version>
+		<jackson.version>1.9.10</jackson.version>
 	</properties>
 	<dependencies>
+		<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<!-- JSON -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>${com.googlecode.json-simple-version}</version>
+		</dependency>
+
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>

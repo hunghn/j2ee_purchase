@@ -11,7 +11,7 @@ public interface ProductService {
 
 	public List<Product> lstProducts();
 
-	public Product getProductById(Integer id);
+	public Product getProductById(String id);
 
-	public void removeProduct(Integer id);
+	public void removeProduct(String id);
 }

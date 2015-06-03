@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,15 +18,16 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 	private static final Logger logger = LoggerFactory
 			.getLogger(PurchaseOrderDAOImpl.class);
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Override
 	public void addPurchaseOrder(PurchaseOrder purchaseOrder) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.persist(purchaseOrder);
 		logger.info("PurchaseOrder saved successfully, PurchaseOrder Details=" + purchaseOrder);
 
@@ -33,16 +35,16 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 
 	@Override
 	public void updatePurchaseOrder(PurchaseOrder purchaseOrder) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		session.update(purchaseOrder);
 		logger.info("PurchaseOrder updated successfully, PurchaseOrder Details=" + purchaseOrder);
 	}
 
 	@Override
-	public void removePurchaseOrder(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
+	public void removePurchaseOrder(String id) {
+		Session session = this.getCurrentSession();
 		PurchaseOrder purchaseOrder = (PurchaseOrder) session
-				.load(PurchaseOrder.class, new Integer(id));
+				.get(PurchaseOrder.class, id);
 		if (null != purchaseOrder) {
 			session.delete(purchaseOrder);
 		}
@@ -52,16 +54,16 @@ public class PurchaseOrderDAOImpl implements PurchaseOrderDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PurchaseOrder> lstPurchaseOrder() {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getCurrentSession();
 		List<PurchaseOrder> lstPurchaseOrder = session.createQuery("from PurchaseOrder").list();
 		return lstPurchaseOrder;
 	}
 
 	@Override
-	public PurchaseOrder getPurchaseOrderById(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
+	public PurchaseOrder getPurchaseOrderById(String id) {
+		Session session = this.getCurrentSession();
 		PurchaseOrder purchaseOrder = (PurchaseOrder) session
-				.load(PurchaseOrder.class, new Integer(id));
+				.get(PurchaseOrder.class, id);
 		return purchaseOrder;
 	}
 

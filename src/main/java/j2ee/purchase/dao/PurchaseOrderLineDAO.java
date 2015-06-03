@@ -9,9 +9,9 @@ public interface PurchaseOrderLineDAO {
 
 	public void updatePurchaseOrderLine(PurchaseOrderLine purchaseOrderLine);
 
-	public void removePurchaseOrderLine(Integer id);
+	public void removePurchaseOrderLine(String id);
 
 	public List<PurchaseOrderLine> lstPurchaseOrderLine();
 
-	public PurchaseOrderLine getPurchaseOrderLineById(Integer id);
+	public PurchaseOrderLine getPurchaseOrderLineById(String id);
 }

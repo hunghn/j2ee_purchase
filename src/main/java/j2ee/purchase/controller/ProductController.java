@@ -24,7 +24,7 @@ public class ProductController {
 		logger.info("Load Product List.");
 		model.addAttribute("URL", "../resources/");
 		model.addAttribute("BASE_URL", "../");
-		model.addAttribute("TITLE", "ERP Admin | List Product");
+		model.addAttribute("TITLE", "List Product");
 
 		Menu menu = new Menu(MENU.PRODUCTS, MENU_ITEM.PRODUCTS_PRODUCTS);
 		model.addAttribute("MENU", menu);
@@ -37,7 +37,7 @@ public class ProductController {
 		logger.info("Load Supplier List.");
 		model.addAttribute("URL", "../resources/");
 		model.addAttribute("BASE_URL", "../");
-		model.addAttribute("TITLE", "ERP Admin | Create Product");
+		model.addAttribute("TITLE", "Create Product");
 
 		Menu menu = new Menu(MENU.PRODUCTS, MENU_ITEM.PRODUCTS_PRODUCTS                                                                                                                                                                                                                                                                                     );
 		model.addAttribute("MENU", menu);

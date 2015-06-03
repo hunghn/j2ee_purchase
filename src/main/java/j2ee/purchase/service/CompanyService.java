@@ -11,7 +11,7 @@ public interface CompanyService {
 
 	public List<Company> lstCompanys();
 
-	public Company getCompanyById(Integer id);
+	public Company getCompanyById(String id);
 
-	public void removeCompany(Integer id);
+	public void removeCompany(String id);
 }

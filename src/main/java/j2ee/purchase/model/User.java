@@ -1,5 +1,6 @@
 package j2ee.purchase.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -7,20 +8,28 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "USER")
-public class User {
+public class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2946042897320611533L;
 
 	@Id
-	@Column(name = "user_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "user_id", columnDefinition = "CHAR(32)")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
 
 	private Boolean active;
 
@@ -28,6 +37,7 @@ public class User {
 	// @JoinColumn(name = "company_id")
 	// private Company company;
 
+	@JsonBackReference
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	private Set<Company> companies;
 
@@ -43,10 +53,11 @@ public class User {
 	// @JoinColumn(name = "partner_id")
 	// private Partner partner;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "user")
 	private Set<Partner> partners;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -58,7 +69,7 @@ public class User {
 		this.companies = companies;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -1,26 +1,35 @@
 package j2ee.purchase.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "PARTNER")
-public class Partner {
+public class Partner implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2101643258601704291L;
 
 	@Id
-	@Column(name = "partner_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "partner_id", columnDefinition = "CHAR(32)")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
 
 	private String name;
 
@@ -46,20 +55,23 @@ public class Partner {
 	// @OneToMany(mappedBy = "partner")
 	// private Set<User> users;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "partner")
 	private Set<PurchaseOrder> purchase_orders;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "partner")
 	private Set<PurchaseOrderLine> purchase_order_lines;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "partner")
 	private Set<StockMove> stock_moves;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

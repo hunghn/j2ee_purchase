@@ -9,9 +9,9 @@ public interface StockMoveDAO {
 
 	public void updateStockMove(StockMove stockMove);
 
-	public void removeStockMove(Integer id);
+	public void removeStockMove(String id);
 
 	public List<StockMove> lstStockMove();
 
-	public StockMove getStockMoveById(Integer id);
+	public StockMove getStockMoveById(String id);
 }

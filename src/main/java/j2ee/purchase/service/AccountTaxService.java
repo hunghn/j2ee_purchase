@@ -11,7 +11,7 @@ public interface AccountTaxService {
 
 	public List<AccountTax> lstAccountTaxs();
 
-	public AccountTax getAccountTaxById(Integer id);
+	public AccountTax getAccountTaxById(String id);
 
-	public void removeAccountTax(Integer id);
+	public void removeAccountTax(String id);
 }

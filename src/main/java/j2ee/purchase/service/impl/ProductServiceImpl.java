@@ -1,4 +1,4 @@
-package j2ee.purchase.impl;
+package j2ee.purchase.service.impl;
 
 import j2ee.purchase.dao.ProductDAO;
 import j2ee.purchase.model.Product;
@@ -6,47 +6,41 @@ import j2ee.purchase.service.ProductService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
+	@Autowired
 	private ProductDAO productDAO;
 
-	public void setProductDAO(ProductDAO productDAO) {
-		this.productDAO = productDAO;
-	}
-
 	@Override
-	@Transactional
 	public void addProduct(Product product) {
 		productDAO.addProduct(product);
 
 	}
 
 	@Override
-	@Transactional
 	public void updateProduct(Product product) {
 		productDAO.updateProduct(product);
 
 	}
 
 	@Override
-	@Transactional
 	public List<Product> lstProducts() {
 		return productDAO.lstProduct();
 	}
 
 	@Override
-	@Transactional
-	public Product getProductById(Integer id) {
+	public Product getProductById(String id) {
 		return productDAO.getProductById(id);
 	}
 
 	@Override
-	@Transactional
-	public void removeProduct(Integer id) {
+	public void removeProduct(String id) {
 		productDAO.removeProduct(id);
 	}
 

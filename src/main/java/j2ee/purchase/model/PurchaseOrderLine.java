@@ -1,11 +1,13 @@
 package j2ee.purchase.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -14,13 +16,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "PURCHASEORDERLINE")
-public class PurchaseOrderLine {
+public class PurchaseOrderLine implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1964125393040452177L;
 
 	@Id
-	@Column(name = "purchase_order_line_id")
-	private Integer id;
+	@Column(name = "purchase_order_line_id", columnDefinition = "CHAR(32)")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
 
 	private String name;
 	private Float price_unit;
@@ -45,9 +57,11 @@ public class PurchaseOrderLine {
 	@JoinColumn(name = "partner_id")
 	private Partner partner;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "purchase_order_line")
 	private Set<StockMove> stock_moves;
 
+	@JsonBackReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "PURCHASEORDERLINE_ACCOUNTTAX", joinColumns = { @JoinColumn(name = "purchase_order_line_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "account_tax_id", nullable = false, updatable = false) })
 	private Set<AccountTax> accounttaxs;
@@ -60,11 +74,11 @@ public class PurchaseOrderLine {
 		this.accounttaxs = accounttaxs;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

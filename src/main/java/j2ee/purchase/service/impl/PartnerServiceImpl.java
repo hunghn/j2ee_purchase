@@ -1,4 +1,4 @@
-package j2ee.purchase.impl;
+package j2ee.purchase.service.impl;
 
 import j2ee.purchase.dao.PartnerDAO;
 import j2ee.purchase.model.Partner;
@@ -6,47 +6,41 @@ import j2ee.purchase.service.PartnerService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class PartnerServiceImpl implements PartnerService {
 
+	@Autowired
 	private PartnerDAO partnerDAO;
 
-	public void setPartnerDAO(PartnerDAO partnerDAO) {
-		this.partnerDAO = partnerDAO;
-	}
-
 	@Override
-	@Transactional
 	public void addPartner(Partner partner) {
 		partnerDAO.addPartner(partner);
 
 	}
 
 	@Override
-	@Transactional
 	public void updatePartner(Partner partner) {
 		partnerDAO.updatePartner(partner);
 
 	}
 
 	@Override
-	@Transactional
 	public List<Partner> lstPartners() {
 		return partnerDAO.lstPartner();
 	}
 
 	@Override
-	@Transactional
-	public Partner getPartnerById(Integer id) {
+	public Partner getPartnerById(String id) {
 		return partnerDAO.getPartnerById(id);
 	}
 
 	@Override
-	@Transactional
-	public void removePartner(Integer id) {
+	public void removePartner(String id) {
 		partnerDAO.removePartner(id);
 	}
 

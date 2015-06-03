@@ -11,7 +11,7 @@ public interface StockLocationService {
 
 	public List<StockLocation> lstStockLocations();
 
-	public StockLocation getStockLocationById(Integer id);
+	public StockLocation getStockLocationById(String id);
 
-	public void removeStockLocation(Integer id);
+	public void removeStockLocation(String id);
 }
