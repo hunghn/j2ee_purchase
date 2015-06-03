@@ -73,7 +73,7 @@
 												<div class="form-group">
 													<label for="InputPhone" class="col-sm-3 control-label">Phone</label>
 													<div class="col-sm-9">
-														<input type="text" placholder="Phone" id="txtPhone"
+														<input type="text" placeholder="Phone" id="txtPhone"
 															class="form-control">
 													</div>
 												</div>
