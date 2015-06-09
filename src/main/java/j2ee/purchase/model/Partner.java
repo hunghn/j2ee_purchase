@@ -43,10 +43,19 @@ public class Partner implements Serializable {
 	private byte[] image;
 	private String street;
 	private String city;
+	private String state;
+	private String zipcode;
+	private String country;
 	private String display_name;
 	private String email;
+	private String phone;
+	private String mobile;
+	private String fax;
+	private String website;
 	private Boolean is_company;
 	private Boolean is_customer;
+	private Boolean is_supplier;
+	private Boolean active;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -210,6 +219,78 @@ public class Partner implements Serializable {
 
 	public void setStock_moves(Set<StockMove> stock_moves) {
 		this.stock_moves = stock_moves;
+	}
+
+	public Boolean getIs_supplier() {
+		return is_supplier;
+	}
+
+	public void setIs_supplier(Boolean is_supplier) {
+		this.is_supplier = is_supplier;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getFax() {
+		return fax;
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	@Override

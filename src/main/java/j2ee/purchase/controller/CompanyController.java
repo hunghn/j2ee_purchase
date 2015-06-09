@@ -3,8 +3,8 @@ package j2ee.purchase.controller;
 import java.util.List;
 
 import j2ee.purchase.model.Company;
-import j2ee.purchase.model.datatable.CompanyDatatable;
 import j2ee.purchase.service.CompanyService;
+import j2ee.purchase.utils.Datatable;
 import j2ee.purchase.utils.Menu;
 import j2ee.purchase.utils.Menu.MENU;
 import j2ee.purchase.utils.Menu.MENU_ITEM;
@@ -61,7 +61,7 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = { "/list.do" }, method = RequestMethod.GET)
 	public String list(Model model, HttpSession session) {
-		logger.info("Load Supplier List.");
+		logger.info("Load Company List.");
 		Init(model);
 		model.addAttribute("TITLE", "List Company");
 		model.addAttribute("PAGE_NAME", "List " + PAGE_NAME);
@@ -81,7 +81,7 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = { "/create.do" }, method = RequestMethod.GET)
 	public String create(Model model, HttpSession session) {
-		logger.info("Load Supplier List.");
+		logger.info("Load Company Create.");
 		Init(model);
 		model.addAttribute("TITLE", "Create Company");
 		model.addAttribute("PAGE_NAME", "Create " + PAGE_NAME);
@@ -99,13 +99,13 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/searchListCompany.do", method = RequestMethod.GET)
 	@ResponseBody
-	public CompanyDatatable doSearchListCompany(HttpSession session) {
+	public Datatable doSearchListCompany(HttpSession session) {
 
 		if (session.getAttribute("USERLOGIN") != null) {
 
 			List<Company> lst = companyService.lstCompanys();
 
-			CompanyDatatable result = new CompanyDatatable();
+			Datatable result = new Datatable();
 			result.setiTotalDisplayRecords(lst.size());
 			result.setiTotalRecords(lst.size());
 			result.setAaData(lst);
@@ -139,7 +139,7 @@ public class CompanyController {
 		if (session.getAttribute("USERLOGIN") != null) {
 			try {
 				Company company = new Company();
-				;
+				
 				if (isUpdate) {
 					company = companyService.getCompanyById(id);
 					company.setName(name);

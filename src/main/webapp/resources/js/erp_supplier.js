@@ -1,20 +1,20 @@
 $(function() {
-	loadListCompany();
+	loadListSupplier();
 
 	loadPopupCreate();
 });
 
 /**
- * Datatable load Company List
+ * Datatable load Supplier List
  */
-function loadListCompany() {
-	$("#dt_lstCompany")
+function loadListSupplier() {
+	$("#dt_lstSupplier")
 			.dataTable(
 					{
 						"bProcessing" : false,
 						"bServerSide" : false,
 						"sort" : "position",
-						"sAjaxSource" : "../company/searchListCompany.do",
+						"sAjaxSource" : "../supplier/searchListSupplier.do",
 						"aoColumns" : [ {
 							"mData" : "name"
 						}, {
@@ -22,23 +22,21 @@ function loadListCompany() {
 						}, {
 							"mData" : "email"
 						}, {
-							"mData" : "address"
-						}, {
 							"mData" : "id"
 						} ],
 						"columnDefs" : [ {
 							"render" : function(data, type, row) {
-								return '<button class="btn btn-default btn-xs" id="editCompany" onClick="clickEdit(\''
+								return '<button class="btn btn-default btn-xs" id="editSupplier" onClick="clickEdit(\''
 										+ data
 										+ '\')"><i class="fa fa-edit"></i></button> - '
-										+ '<button class="btn btn-primary btn-xs" id="viewCompany" onClick="clickView(\''
+										+ '<button class="btn btn-primary btn-xs" id="viewSupplier" onClick="clickView(\''
 										+ data
 										+ '\')"><i class="fa fa-info"></i></button> - '
-										+ '<button class="btn btn-danger btn-xs" id="viewCompany" onClick="clickDelete(\''
+										+ '<button class="btn btn-danger btn-xs" id="viewSupplier" onClick="clickDelete(\''
 										+ data
 										+ '\')"><i class="fa fa-remove"></i></button>';
 							},
-							"targets" : 4
+							"targets" : 3
 						} ],
 						fnDrawCallback : function(oSettings) {
 							$('div.dataTables_filter input').addClass(
@@ -79,7 +77,7 @@ function loadPopupCreate() {
  */
 
 function validForm() {
-	$('#formCompany')
+	$('#formSupplier')
 			.bootstrapValidator(
 					{
 						message : 'This value is not valid',
@@ -89,7 +87,7 @@ function validForm() {
 							validating : 'glyphicon glyphicon-refresh'
 						},
 						fields : {
-							name : {
+							txtName : {
 								message : 'The Name is not valid',
 								validators : {
 									notEmpty : {
@@ -97,7 +95,7 @@ function validForm() {
 									}
 								}
 							},
-							email : {
+							txtEmail : {
 								validators : {
 									notEmpty : {
 										message : 'The email address is required and can\'t be empty'
@@ -107,7 +105,7 @@ function validForm() {
 									}
 								}
 							},
-							phone : {
+							txtPhone : {
 								validators : {
 									notEmpty : {
 										message : 'The phone is required and can\'t be empty'
@@ -118,11 +116,20 @@ function validForm() {
 									},
 								}
 							},
-							address : {
+							txtMobile : {
 								validators : {
-									notEmpty : {
-										message : 'The address is required and can\'t be empty'
-									}
+									regexp : {
+										regexp : /^(\+\d{2,4})?\s?(\d{10,11})$/,
+										message : 'The mobile incorrect format.'
+									},
+								}
+							},
+							txtFax : {
+								validators : {
+									regexp : {
+										regexp : /^(\+\d{2,4})?\s?(\d{10,11})$/,
+										message : 'The fax incorrect format.'
+									},
 								}
 							}
 						}
@@ -136,18 +143,17 @@ function validForm() {
 						// Get the BootstrapValidator instance
 						var bv = $form.data('bootstrapValidator');
 						// Use Ajax to submit form data
-						$
-								.post($form.attr('action'), $form.serialize(),
-										function(result) {
-											if (!result.status) {
-												alert(result.msg);
-											}
-											$('#erpModalPopup').modal('hide');
-											$('#dt_lstCompany').dataTable()
-													.fnDestroy();
-											loadListCompany();
+						$.post($form.attr('action'), $form.serialize(),
+								function(result) {
+									if (!result.status) {
+										alert(result.msg);
+									}
+									$('#erpModalPopup').modal('hide');
+									$('#dt_lstSupplier').dataTable()
+											.fnDestroy();
+									loadListSupplier();
 
-										}, 'json');
+								}, 'json');
 					});
 }
 
@@ -155,7 +161,7 @@ function clickView(id) {
 
 	var popup = $('#erpModalPopup');
 	$.ajax({
-		url : './viewCompany.do/' + id,
+		url : './viewSupplier.do/' + id,
 		type : 'GET',
 		cache : false,
 		data : '',
@@ -174,7 +180,7 @@ function clickEdit(id) {
 
 	var popup = $('#erpModalPopup');
 	$.ajax({
-		url : './editCompany.do/' + id,
+		url : './editSupplier.do/' + id,
 		type : 'GET',
 		cache : false,
 		data : '',
@@ -190,9 +196,8 @@ function clickEdit(id) {
 }
 
 function clickDelete(id) {
-
 	$.ajax({
-		url : './deleteCompany.do',
+		url : './deleteSupplier.do',
 		type : 'GET',
 		cache : false,
 		data : 'id=' + id,
@@ -201,8 +206,8 @@ function clickDelete(id) {
 			if (!json.status) {
 				alert(json.msg);
 			}
-			$('#dt_lstCompany').dataTable().fnDestroy();
-			loadListCompany();
+			$('#dt_lstSupplier').dataTable().fnDestroy();
+			loadListSupplier();
 		}
 	});
 

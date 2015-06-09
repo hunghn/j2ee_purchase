@@ -3,6 +3,9 @@
 <!-- DATA TABLES -->
 <link href="${URL}plugins/datatables/dataTables.bootstrap.css"
 	rel="stylesheet" type="text/css" />
+<!-- Combobox -->
+<link href="${URL}plugins/bootstrap-combobox/css/bootstrap-combobox.css"
+	rel="stylesheet" type="text/css" />
 </head>
 <body class="skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -19,10 +22,11 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>List Supplier</h1>
+				<h1>${PAGE_NAME}</h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">List Supplier</li>
+					<li><a href="${BASE_URL}home.do"><i
+							class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">${PAGE_NAME}</li>
 				</ol>
 			</section>
 
@@ -32,7 +36,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header with-border">
-								<a href="./create.do" class="btn btn-primary">Create</a>
+								<button class="btn btn-primary" id="erpModalPopupButton">Create</button>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
@@ -43,35 +47,9 @@
 											<th>Name</th>
 											<th>Phone</th>
 											<th>Email</th>
+											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>Công ty TNHH Thiên Viên</td>
-											<td>(08) - 093 8276</td>
-											<td>example@email.com</td>
-										</tr>
-										<tr>
-											<td>Công ty TNHH Thiên Viên</td>
-											<td>(08) - 093 8276</td>
-											<td>example@email.com</td>
-										</tr>
-										<tr>
-											<td>Công ty TNHH Thiên Viên</td>
-											<td>(08) - 093 8276</td>
-											<td>example@email.com</td>
-										</tr>
-										<tr>
-											<td>Công ty TNHH Thiên Viên</td>
-											<td>(08) - 093 8276</td>
-											<td>example@email.com</td>
-										</tr>
-										<tr>
-											<td>Công ty TNHH Thiên Viên</td>
-											<td>(08) - 093 8276</td>
-											<td>example@email.com</td>
-										</tr>
-									</tbody>
 								</table>
 							</div>
 							<!-- /.box-body -->
@@ -83,6 +61,9 @@
 				<!-- /.row -->
 			</section>
 			<!-- /.content -->
+			<div class="modal fade" id="erpModalPopup" tabindex="-1"
+				role="dialog" aria-labelledby="erpModalPopupLabel"
+				aria-hidden="true"></div>
 		</div>
 		<!-- /.content-wrapper -->
 
@@ -95,7 +76,8 @@
 	<!-- jQuery 2.1.3 -->
 	<script src="${URL}plugins/jQuery/jQuery-2.1.3.min.js"></script>
 	<!-- Bootstrap 3.3.2 JS -->
-	<script src="${URL}bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="${URL}bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
 	<!-- DATA TABES SCRIPT -->
 	<script src="${URL}plugins/datatables/jquery.dataTables.min.js"
 		type="text/javascript"></script>
@@ -108,12 +90,12 @@
 	<script src='${URL}plugins/fastclick/fastclick.min.js'></script>
 	<!-- AdminLTE App -->
 	<script src="${URL}dist/js/app.min.js" type="text/javascript"></script>
+	<!-- Bootstrap validator -->
+	<script
+		src='${URL}plugins/bootstrap-validator/js/bootstrapValidator.min.js'></script>
+	<!-- Bootstrap combobox -->
+	<script src='${URL}plugins/bootstrap-combobox/js/bootstrap-combobox.js'></script>
 	<!-- page script -->
-	<script type="text/javascript">
-		$(function() {
-			$("#dt_lstSupplier").dataTable();
-		});
-	</script>
-
+	<script src="${URL}js/erp_supplier.js" type="text/javascript"></script>
 </body>
 </html>
