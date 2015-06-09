@@ -1,6 +1,4 @@
-package j2ee.purchase.model.datatable;
-
-import j2ee.purchase.model.Company;
+package j2ee.purchase.utils;
 
 import java.util.List;
 
@@ -10,7 +8,7 @@ import java.util.List;
  *
  */
 
-public class CompanyDatatable {
+public class Datatable {
 	int iTotalRecords;
 
 	int iTotalDisplayRecords;
@@ -19,7 +17,7 @@ public class CompanyDatatable {
 
 	String sColumns;
 
-	List<Company> aaData;
+	List<?> aaData;
 
 	public int getiTotalRecords() {
 		return iTotalRecords;
@@ -53,11 +51,11 @@ public class CompanyDatatable {
 		this.sColumns = sColumns;
 	}
 
-	public List<Company> getAaData() {
+	public List<?> getAaData() {
 		return aaData;
 	}
 
-	public void setAaData(List<Company> aaData) {
+	public void setAaData(List<?> aaData) {
 		this.aaData = aaData;
 	}
 }
