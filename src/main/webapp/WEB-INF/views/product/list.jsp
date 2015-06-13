@@ -1,8 +1,29 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page session="true"%>
+<c:choose>
+	<c:when test="${not empty sessionScope['USERLOGIN']}">
+	</c:when>
+	<c:otherwise>
+		<c:redirect url="/" />
+	</c:otherwise>
+</c:choose>
 <%@ include file="../base/head.jsp"%>
-
 <!-- DATA TABLES -->
 <link href="${URL}plugins/datatables/dataTables.bootstrap.css"
 	rel="stylesheet" type="text/css" />
+<!-- Other -->
+<link href="${URL}plugins/wizard-stepbystep/bootstrap-nav-wizard.css"
+	rel="stylesheet" type="text/css" />
+</head>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css"
+	rel="stylesheet" />
 </head>
 <body class="skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -18,10 +39,11 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>List Product</h1>
+				<h1>${PAGE_NAME}</h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">List Product</li>
+					<li><a href="${BASE_URL}home.do"><i
+							class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">${PAGE_NAME}</li>
 				</ol>
 			</section>
 
@@ -31,7 +53,7 @@
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header with-border">
-								<a href="./create.do" class="btn btn-primary">Create</a>
+								<button class="btn btn-primary" id="erpModalPopupButton">Create</button>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
@@ -40,47 +62,12 @@
 									<thead>
 										<tr>
 											<th>Name</th>
-											<th>Internal Category</th>
-											<th>Product Type</th>
 											<th>Status</th>
-											<th>Quantity On Hand</th>
-											<th>Quantity Available</th>
+											<th>Sale Price</th>
+											<th>Cost Price</th>
+											<th>Action</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-									</tbody>
 								</table>
 							</div>
 							<!-- /.box-body -->
@@ -92,6 +79,11 @@
 				<!-- /.row -->
 			</section>
 			<!-- /.content -->
+
+			<!-- Modal -->
+			<div class="modal fade" id="erpModalPopup" tabindex="-1"
+				role="dialog" aria-labelledby="erpModalPopupLabel"
+				aria-hidden="true"></div>
 		</div>
 		<!-- /.content-wrapper -->
 
@@ -119,12 +111,14 @@
 	<script src='${URL}plugins/fastclick/fastclick.min.js'></script>
 	<!-- AdminLTE App -->
 	<script src="${URL}dist/js/app.min.js" type="text/javascript"></script>
+	<!-- Bootstrap validator -->
+	<script
+		src='${URL}plugins/bootstrap-validator/js/bootstrapValidator.min.js'></script>
+	<!-- Other -->
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"></script>
 	<!-- page script -->
-	<script type="text/javascript">
-		$(function() {
-			$("#dt_lstProduct").dataTable();
-		});
-	</script>
+	<script src="${URL}js/erp_product.js" type="text/javascript"></script>
 
 </body>
 </html>

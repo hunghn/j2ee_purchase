@@ -1,127 +1,227 @@
-<%@ include file="../base/head.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page session="true"%>
+<c:choose>
+	<c:when test="${not empty sessionScope['USERLOGIN']}">
+	</c:when>
+	<c:otherwise>
+		<c:redirect url="/" />
+	</c:otherwise>
+</c:choose>
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<!-- form start -->
+		<form role="form" class="form-horizontal" action="./submitProduct.do"
+			id="formProduct" method="POST">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="erpModalPopupLabel">${PAGE_NAME}</h4>
+			</div>
+			<div class="modal-body">
+				<!-- Body -->
+				<div class="box-body">
+					<div class="row">
+						<div class="box box-primary">
+							<div class="row margin">
+								<div class="col-xs-6">
+									<div class="col-xs-4">
+										<img width="100" src="../resources/dist/img/boxed-bg.jpg"
+											class="img-circle" alt="User Image">
+									</div>
+									<div class="col-xs-6">
+										<div class="form-group">
+											<label>Product Name</label> <input type="text"
+												class="form-control" name="txtName"
+												placeholder="Product Name">
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6">
 
-</head>
-<body class="skin-blue sidebar-mini">
-	<div class="wrapper">
 
-
-		<!-- Header -->
-		<%@ include file="../base/header.jsp"%>
-		<!-- /.Header -->
-
-		<!-- Menu -->
-		<%@ include file="../base/menu.jsp"%>
-		<!-- /.Menu -->
-
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<h1>List Product</h1>
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">List Product</li>
-				</ol>
-			</section>
-
-			<!-- Main content -->
-			<section class="content">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box">
-							<div class="box-header with-border">
-								<button class="btn btn-primary">Create</button>
+									<a class="btn btn-app"> <i class="fa fa-edit"></i> Purchase
+									</a> <a class="btn btn-app"> <i class="fa fa-edit"></i> On Hand
+									</a> <a class="btn btn-app"> <i class="fa fa-edit"></i> Moves
+									</a> <a class="btn btn-app"> <i class="fa fa-edit"></i>
+										Reordering Rule
+									</a> <a class="btn btn-app"> <i class="fa fa-edit"></i> Routes
+									</a>
+								</div>
 							</div>
-							<!-- /.box-header -->
-							<div class="box-body">
-								<table id="dt_lstProduct"
-									class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Internal Category</th>
-											<th>Product Type</th>
-											<th>Status</th>
-											<th>Quantity On Hand</th>
-											<th>Quantity Available</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-										<tr>
-											<td>Laptop</td>
-											<td>All</td>
-											<td>Service</td>
-											<td></td>
-											<td>0.000</td>
-											<td>0.000</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<!-- /.box-body -->
 						</div>
-						<!-- /.box -->
+
 					</div>
-					<!-- /.col -->
+					<div class="row">
+						<div class="nav-tabs-custom">
+							<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+								<li class="active"><a href="#information" data-toggle="tab">Information</a></li>
+								<li><a href="#procurements" data-toggle="tab">Procurements</a></li>
+								<li><a href="#inventory" data-toggle="tab">Inventory</a></li>
+								<li><a href="#sales" data-toggle="tab">Sales</a></li>
+								<li><a href="#accounting" data-toggle="tab">Accounting</a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active margin" id="information">
+									<div class="row">
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label class="col-sm-3 control-label">Sale Price</label>
+												<div class="col-sm-7">
+													<input type="text" name="txtSalePrice" class="form-control"
+														placeholder="Sale Price">
+												</div>
+												<!-- /.input group -->
+											</div>
+										</div>
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label for="InputTitle" class="col-sm-4 control-label">Active</label>
+												<div class="col-sm-8">
+													<div class="checkbox">
+														<label> <input type="checkbox" checked="checked"
+															name="txtActive">
+														</label>
+													</div>
+												</div>
+											</div>
+											<!-- <div class="form-group">
+												<label class="col-sm-4 control-label">Internal
+													Reference</label>
+												<div class="col-sm-7">
+													<input type="text" name="txtInternalReference"
+														class="form-control" placeholder="Internal Reference">
+												</div>										
+											</div>-->
+
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="box-body pad">
+											<textarea class="textarea" name="txtDescription"
+												placeholder="describe the product characteristics..."
+												style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane margin" id="procurements">
+									<div class="row">
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label class="col-sm-4 control-label">Cost Price</label>
+												<div class="col-sm-7">
+													<input type="text" name="txtCostPrice" class="form-control"
+														placeholder="Cost Price">
+												</div>
+												<!-- /.input group -->
+											</div>
+										</div>
+									</div>
+									<h2 class="page-header">Supplier</h2>
+									<div class="row">
+										<table id="dt_lstSupplier"
+											class="table table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>Supplier</th>
+													<th>Delivery Lead Time</th>
+													<th>Minimal Quantity</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane margin" id="inventory">
+									<h3>Update</h3>
+								</div>
+								<div class="tab-pane margin" id="sales">
+
+									<div class="row margin">
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label class="col-sm-5 control-label">Warranty</label>
+												<div class="col-sm-7">
+													<input type="text" name="txtWarranty" class="form-control"
+														placeholder="Warranty">
+												</div>
+												<!-- /.input group -->
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-5 control-label">Customer Lead
+													Time</label>
+												<div class="col-sm-7">
+													<input type="text" name="txtCustomerLeadTime"
+														class="form-control" placeholder="Customer Lead Time">
+												</div>
+												<!-- /.input group -->
+											</div>
+										</div>
+
+									</div>
+									<div class="row">
+										<h3>Description for Quotations</h3>
+									</div>
+									<div class="row">
+										<div class="box-body pad">
+											<textarea class="textarea" name="txtNote"
+												placeholder="note to be displayed on quotations..."
+												style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane margin" id="accounting">
+									<div class="row">
+										<div class="col-xs-6">
+											<div class="form-group">
+												<label class="col-sm-5 control-label">Customer Taxes</label>
+												<div class="col-sm-7">
+													<select name="txtCustomerTaxes" class="form-control">
+														<option value="-1" selected="selected"></option>
+														<c:forEach var="accounttax" items="${LIST_ACCOUNTTAX}">
+															<option value="${accounttax.id}">${accounttax.name}</option>
+														</c:forEach>
+													</select>
+												</div>
+												<!-- /.input group -->
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-5 control-label">Supplier Taxes</label>
+												<div class="col-sm-7">
+													<select name="txtSupplierTaxes" class="form-control">
+														<option value="-1" selected="selected"></option>
+														<c:forEach var="accounttax" items="${LIST_ACCOUNTTAX}">
+															<option value="${accounttax.id}">${accounttax.name}</option>
+														</c:forEach>
+													</select>
+												</div>
+												<!-- /.input group -->
+											</div>
+										</div>
+										<div class="col-xs-6"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<!-- /.row -->
-			</section>
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-		
-		<!-- Footer -->
-		<%@ include file="../base/footer.jsp"%>
-		<!-- /.Footer -->
+
+				<!-- //. Body -->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</form>
 	</div>
-	<!-- ./wrapper -->
-
-	<!-- jQuery 2.1.3 -->
-	<script src="${URL}plugins/jQuery/jQuery-2.1.3.min.js"></script>
-	<!-- Bootstrap 3.3.2 JS -->
-	<script src="${URL}bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<!-- DATA TABES SCRIPT -->
-	<script src="${URL}plugins/datatables/jquery.dataTables.min.js"
-		type="text/javascript"></script>
-	<script src="${URL}plugins/datatables/dataTables.bootstrap.min.js"
-		type="text/javascript"></script>
-	<!-- SlimScroll -->
-	<script src="${URL}plugins/slimScroll/jquery.slimscroll.min.js"
-		type="text/javascript"></script>
-	<!-- FastClick -->
-	<script src='${URL}plugins/fastclick/fastclick.min.js'></script>
-	<!-- AdminLTE App -->
-	<script src="${URL}dist/js/app.min.js" type="text/javascript"></script>
-	<!-- page script -->
-	<script type="text/javascript">
-		$(function() {
-			$("#dt_lstProduct").dataTable();
-		});
-	</script>
-
-</body>
-</html>
+</div>
+<script type="text/javascript">
+	$(function() {
+		validForm();
+	});
+</script>

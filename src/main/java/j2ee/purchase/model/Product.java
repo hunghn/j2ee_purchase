@@ -4,10 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,8 +34,17 @@ public class Product implements Serializable {
 	private String id;
 
 	private String name;
-	private Date create_date;
+	private Date createDate;
 	private byte[] image;
+	private Boolean active;
+	private Double salePrice;
+	private Double costPrice;
+	private String description;
+	private Float warranty;
+	private Float customerLeadTime;
+	private AccountTax customerTaxes;
+	private AccountTax supplierTaxes;
+	private String note;
 
 	@JsonBackReference
 	@OneToMany(mappedBy = "product")
@@ -39,6 +53,11 @@ public class Product implements Serializable {
 	@JsonBackReference
 	@OneToMany(mappedBy = "product")
 	private Set<StockMove> stock_moves;
+
+	@JsonBackReference
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "PRODUCT_PARTNER", joinColumns = { @JoinColumn(name = "product_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "partner_id", nullable = false, updatable = false) })
+	private Set<Partner> partners;
 
 	public String getId() {
 		return id;
@@ -56,12 +75,8 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public Date getCreate_date() {
-		return create_date;
-	}
-
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
 	public byte[] getImage() {
@@ -87,6 +102,90 @@ public class Product implements Serializable {
 
 	public void setStock_moves(Set<StockMove> stock_moves) {
 		this.stock_moves = stock_moves;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public Double getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public Double getCostPrice() {
+		return costPrice;
+	}
+
+	public void setCostPrice(Double costPrice) {
+		this.costPrice = costPrice;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Float getWarranty() {
+		return warranty;
+	}
+
+	public void setWarranty(Float warranty) {
+		this.warranty = warranty;
+	}
+
+	public Float getCustomerLeadTime() {
+		return customerLeadTime;
+	}
+
+	public void setCustomerLeadTime(Float customerLeadTime) {
+		this.customerLeadTime = customerLeadTime;
+	}
+
+	public AccountTax getCustomerTaxes() {
+		return customerTaxes;
+	}
+
+	public void setCustomerTaxes(AccountTax customerTaxes) {
+		this.customerTaxes = customerTaxes;
+	}
+
+	public AccountTax getSupplierTaxes() {
+		return supplierTaxes;
+	}
+
+	public void setSupplierTaxes(AccountTax supplierTaxes) {
+		this.supplierTaxes = supplierTaxes;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Set<Partner> getPartners() {
+		return partners;
+	}
+
+	public void setPartners(Set<Partner> partners) {
+		this.partners = partners;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	@Override
