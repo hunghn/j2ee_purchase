@@ -49,4 +49,12 @@ public class AccountTaxServiceImpl implements AccountTaxService {
 		accountTaxDAO.removeAccountTax(id);
 	}
 
+	@Override
+	public boolean checkExistAccountTax(String name) {
+		if(accountTaxDAO.getAccountTaxByName(name) != null){
+			return true;
+		}
+		return false;
+	}
+
 }

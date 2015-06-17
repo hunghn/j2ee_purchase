@@ -20,4 +20,8 @@ public interface UserService {
 	public boolean login(String email, String password);
 	
 	public User getUserByEmail(String email);
+	
+	public boolean checkExistUserName(String username);
+	
+	public boolean checkExistUserEmail(String email);
 }

@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,17 +51,17 @@ public class HomeController {
 
 		session.setAttribute("TOKEN", token);
 
-//		 User user = new User();
-//		 user.setActive(true);
-//		 user.setEmail("phamvantrung.11193@gmail.com");
-//		 String salt = Security.getSalt();
-//		 user.setSalt(salt);
-//		 user.setPassword(Security.encryptPassword("01111993$T"+salt));
-//		 user.setUser_type(1);
-//		 user.setUsername("trungpv");
-//		 user.setCreate_date(new Date());
-//		
-//		 userService.addUser(user);
+//		User user = new User();
+//		user.setActive(true);
+//		user.setEmail("vovantinhpy@gmail.com");
+//		String salt = Security.getSalt();
+//		user.setSalt(salt);
+//		user.setPassword(Security.encryptPassword("123" + salt));
+//		user.setUser_type(1);
+//		user.setUsername("tinhvv");
+//		user.setCreate_date(new Date());
+//
+//		userService.addUser(user);
 
 		return "login";
 	}

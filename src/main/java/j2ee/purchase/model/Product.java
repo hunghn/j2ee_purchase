@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -53,6 +54,10 @@ public class Product implements Serializable {
 	@JsonBackReference
 	@OneToMany(mappedBy = "product")
 	private Set<StockMove> stock_moves;
+	
+	@ManyToOne
+	@JoinColumn(name = "unit_id")
+	private User unit;
 
 	@JsonBackReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -102,6 +107,14 @@ public class Product implements Serializable {
 
 	public void setStock_moves(Set<StockMove> stock_moves) {
 		this.stock_moves = stock_moves;
+	}
+
+	public User getUnit() {
+		return unit;
+	}
+
+	public void setUnit(User unit) {
+		this.unit = unit;
 	}
 
 	public Boolean getActive() {

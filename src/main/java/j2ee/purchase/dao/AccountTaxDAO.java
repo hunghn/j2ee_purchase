@@ -14,4 +14,6 @@ public interface AccountTaxDAO {
 	public List<AccountTax> lstAccountTax();
 
 	public AccountTax getAccountTaxById(String id);
+	
+	public AccountTax getAccountTaxByName(String name);
 }

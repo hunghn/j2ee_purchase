@@ -80,4 +80,18 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
+	@Override
+	public User getUserByUserName(String username) {
+		Session session = this.getCurrentSession();
+		String hql = "from User as o where o.username=:username";
+		Query query = session.createQuery(hql);
+		query.setParameter("username", username);
+		@SuppressWarnings("unchecked")
+		List<User> lstUser = query.list();
+		if (!lstUser.isEmpty()) {
+			return lstUser.get(0);
+		}
+		return null;
+	}
+
 }

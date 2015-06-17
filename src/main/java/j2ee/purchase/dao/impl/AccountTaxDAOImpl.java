@@ -5,6 +5,7 @@ import j2ee.purchase.model.AccountTax;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -67,6 +68,20 @@ public class AccountTaxDAOImpl implements AccountTaxDAO {
 		Session session = this.getCurrentSession();
 		AccountTax accountTax = (AccountTax) session.get(AccountTax.class, id);
 		return accountTax;
+	}
+
+	@Override
+	public AccountTax getAccountTaxByName(String name) {
+		Session session = this.getCurrentSession();
+		String hql = "from AccountTax as o where o.name=:name";
+		Query query = session.createQuery(hql);
+		query.setParameter("name", name);
+		@SuppressWarnings("unchecked")
+		List<AccountTax> lstAccountTax = query.list();
+		if (!lstAccountTax.isEmpty()) {
+			return lstAccountTax.get(0);
+		}
+		return null;
 	}
 
 }

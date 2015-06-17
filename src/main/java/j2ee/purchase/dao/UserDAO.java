@@ -15,5 +15,7 @@ public interface UserDAO {
 
 	public User getUserById(String id);
 
+	public User getUserByUserName(String username);
+	
 	public User getUserByEmail(String email);
 }

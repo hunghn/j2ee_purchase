@@ -81,4 +81,20 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserByEmail(email);
 	}
 
+	@Override
+	public boolean checkExistUserName(String username) {
+		if(userDAO.getUserByUserName(username) != null){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean checkExistUserEmail(String email) {
+		if(userDAO.getUserByEmail(email) != null){
+			return true;
+		}
+		return false;
+	}
+
 }

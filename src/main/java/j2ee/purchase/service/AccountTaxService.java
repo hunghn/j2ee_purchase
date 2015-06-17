@@ -14,4 +14,6 @@ public interface AccountTaxService {
 	public AccountTax getAccountTaxById(String id);
 
 	public void removeAccountTax(String id);
+	
+	public boolean checkExistAccountTax(String name);
 }

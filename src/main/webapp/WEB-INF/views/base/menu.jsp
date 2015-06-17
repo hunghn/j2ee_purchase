@@ -106,9 +106,18 @@
 					class="fa fa-angle-left pull-right"></i>
 			</a>
 				<ul class="treeview-menu">
+					<li <%if (menu.getMenu_item() == MENU_ITEM.MANAGER_ACCOUNT_TAX) {%>
+						class="active" <%}%>><a href="${BASE_URL}account-tax/list.do"><i
+							class="fa fa-dot-circle-o"></i> Account Tax</a></li>
 					<li <%if (menu.getMenu_item() == MENU_ITEM.MANAGER_COMPANIES) {%>
 						class="active" <%}%>><a href="${BASE_URL}company/list.do"><i
 							class="fa fa-dot-circle-o"></i> Company</a></li>
+					<li <%if (menu.getMenu_item() == MENU_ITEM.MANAGER_UNITS) {%>
+						class="active" <%}%>><a href="${BASE_URL}unit/list.do"><i
+							class="fa fa-dot-circle-o"></i> Unit</a></li>
+					<li <%if (menu.getMenu_item() == MENU_ITEM.MANAGER_USER) {%>
+						class="active" <%}%>><a href="${BASE_URL}user/list.do"><i
+							class="fa fa-dot-circle-o"></i> User</a></li>
 				</ul></li>
 		</ul>
 	</section>
